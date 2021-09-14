@@ -18,6 +18,9 @@ npm run start
 npm run dev
 ```
 
-Запуск eslint: ```sh
+Запуск eslint: 
+```sh
 npx eslint .
 ```
+
+## Ссылка для запроса к API [https://best-movies.nomoredomains.monster](https://best-movies.nomoredomains.monster)
