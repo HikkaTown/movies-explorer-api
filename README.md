@@ -23,4 +23,4 @@ npm run dev
 npx eslint .
 ```
 
-## Ссылка для запроса к API [https://best-movies.nomoredomains.monster](https://best-movies.nomoredomains.monster)
+## Ссылка для запроса к API [https://api.best-movies.nomoredomains.club](https://api.best-movies.nomoredomains.club)
