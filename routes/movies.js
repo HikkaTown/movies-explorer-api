@@ -3,28 +3,29 @@ const { celebrate, Joi } = require('celebrate');
 const {
   getMovies, createMovie, deleteMovie,
 } = require('../controllers/movie');
+const { validationURL } = require('../utils/constant');
 
-router.get('/', getMovies);
+router.get('/movies', getMovies);
 
-router.post('/', celebrate({
+router.post('/movies', celebrate({
   body: Joi.object().keys({
     country: Joi.string().required(),
     director: Joi.string().required(),
     duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
-    image: Joi.string().regex(/[-a-zA-Z0-9@:%_+.~#?&/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&/=]*)?/).required(),
-    trailer: Joi.string().regex(/[-a-zA-Z0-9@:%_+.~#?&/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&/=]*)?/).required(),
+    image: Joi.string().custom(validationURL).required(),
+    trailer: Joi.string().custom(validationURL).required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
-    thumbnail: Joi.string().regex(/[-a-zA-Z0-9@:%_+.~#?&/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&/=]*)?/).required(),
-    movieId: Joi.string().required(),
+    thumbnail: Joi.string().custom(validationURL).required(),
+    movieId: Joi.number().required(),
   }),
 }), createMovie);
 
-router.delete('/:movieId', celebrate({
+router.delete('/movies/:movieId', celebrate({
   params: Joi.object().keys({
-    movieId: Joi.string().alphanum().length(24),
+    movieId: Joi.string().hex().length(24),
   }),
 }), deleteMovie);
 
