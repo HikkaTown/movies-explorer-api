@@ -1,6 +1,6 @@
 const validator = require('validator');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3454 } = process.env;
 const movieNotFoundMessage = 'Запрашиваемый фильм не найден';
 const defaultMessageError = 'Произошла ошибка';
 const userNotFoundMessage = 'Запрашиваемый пользователь не найден';
