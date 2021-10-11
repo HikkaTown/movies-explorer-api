@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -17,6 +18,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect(mongoServerPath, mongoConnectionSettings);
+app.use(cors({
+  origin: 'https://best-movies.nomoredomains.monster',
+  methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+  allowedHeaders: ['Authoriztion', 'Content-Type', 'Accept', 'Accept-Encoding'],
+  credentials: true,
+  optionsSuccessStatus: 200,
+}));
 
 app.use(requestLogger);
 
